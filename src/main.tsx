@@ -12,6 +12,9 @@ import Page4 from "./pages/Page4.tsx";
 import Page5 from "./pages/Page5.tsx";
 import Page6 from "./pages/Page6.tsx";
 import Page7 from "./pages/Page7.tsx";
+import Page8 from "./pages/Page8.tsx";
+import Page9 from "./pages/Page9.tsx";
+import Page10 from "./pages/Page10.tsx";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +48,18 @@ const router = createBrowserRouter([
   {
     path: "/form7",
     element: <Page7 />,
+  },
+  {
+    path: "/form8",
+    element: <Page8 />,
+  },
+  {
+    path: "/form9",
+    element: <Page9 />,
+  },
+  {
+    path: "/form10",
+    element: <Page10 />,
   },
 ]);
 

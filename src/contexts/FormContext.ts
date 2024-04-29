@@ -3,11 +3,11 @@ import { createContext, useContext } from "react";
 interface FormContextType {
   name?: string;
   setName?: React.Dispatch<React.SetStateAction<string>>;
-  photo?: string;
-  setPhoto?: React.Dispatch<React.SetStateAction<string>>;
-  photoFile?: File | null;
-  setPhotoFile?: React.Dispatch<React.SetStateAction<File | null>>;
+  pirateOrNinja?: PirateNinja;
+  setPirateOrNinja?: React.Dispatch<React.SetStateAction<PirateNinja>>;
 }
+
+export type PirateNinja = "pirate" | "ninja";
 
 export const FormContext = createContext<FormContextType>({});
 

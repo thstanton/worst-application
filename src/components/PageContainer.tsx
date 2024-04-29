@@ -6,7 +6,7 @@ interface PageContainerProps {
 
 export default function PageContainer({ children }: PageContainerProps) {
   return (
-    <div className="flex min-h-[calc(100vh-2rem)] w-full grow flex-col items-center justify-center px-8">
+    <div className="h-[calc(100vh - 4rem)] flex w-full flex-col items-center justify-center px-8">
       {children}
     </div>
   );

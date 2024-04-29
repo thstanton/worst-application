@@ -9,6 +9,8 @@ interface InputProps {
   value?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
+  defaultValue?: string;
+  required?: boolean;
 }
 
 export default function Input({
@@ -20,6 +22,8 @@ export default function Input({
   value,
   onChange,
   disabled = false,
+  defaultValue,
+  required,
 }: InputProps) {
   return (
     <input
@@ -31,6 +35,8 @@ export default function Input({
       value={value}
       onChange={onChange}
       disabled={disabled}
+      defaultValue={defaultValue}
+      required={required}
     />
   );
 }

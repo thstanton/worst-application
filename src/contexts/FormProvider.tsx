@@ -1,5 +1,5 @@
-import { ReactNode, useEffect, useState } from "react";
-import { FormContext } from "./FormContext";
+import { ReactNode, useState } from "react";
+import { FormContext, PirateNinja } from "./FormContext";
 
 interface FormProviderProps {
   children: ReactNode;
@@ -7,25 +7,15 @@ interface FormProviderProps {
 
 export const FormProvider = ({ children }: FormProviderProps) => {
   const [name, setName] = useState<string>("");
-  const [photo, setPhoto] = useState<string>("");
-  const [photoFile, setPhotoFile] = useState<File | null>(null);
-
-  useEffect(() => {
-    if (photoFile) {
-      const photoURL = URL.createObjectURL(photoFile);
-      setPhoto(photoURL);
-    }
-  }, [photoFile]);
+  const [pirateOrNinja, setPirateOrNinja] = useState<PirateNinja>("pirate");
 
   return (
     <FormContext.Provider
       value={{
         name,
         setName,
-        photo,
-        setPhoto,
-        photoFile,
-        setPhotoFile,
+        pirateOrNinja,
+        setPirateOrNinja,
       }}
     >
       {children}
