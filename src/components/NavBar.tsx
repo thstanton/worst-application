@@ -8,12 +8,15 @@ export default function NavBar() {
 
   return (
     <div className="navbar flex px-8">
-      <div className="font-anton navbar-start text-3xl text-primary">
+      <div className="navbar-start font-anton text-xl text-primary md:text-3xl">
         Please Hire Me
       </div>
       <div className="navbar-end">
         <p className="mr-4">{name?.length ? `👋 Hi ${name}!` : ""}</p>
-        <button className="btn btn-outline" onClick={saveButton}>
+        <button
+          className={`btn btn-outline hidden md:block`}
+          onClick={saveButton}
+        >
           Save Progress
         </button>
       </div>

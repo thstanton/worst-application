@@ -20,30 +20,22 @@ export default function Page4() {
     "HTML",
     "CSS",
     "JavaScript",
-    "HTML5",
     "TypeScript",
-    "CSS3",
     "Python",
     "Go",
-    "Kotlin",
     "C#",
     "C++",
     "C",
-    "Rust",
     "Ruby",
     "PHP",
     "SQL",
-    "Scala",
-    "Rust",
-    "Elixir",
-    "Erlang",
     "Lisp",
     "Haskell",
   ];
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (skillValues.length > 20) navigate("/form5");
+    if (skillValues.length >= languages.length - 1) navigate("/form5");
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -55,7 +47,7 @@ export default function Page4() {
   return (
     <>
       {skillValues.length > 3 && (
-        <div className="fixed right-8 top-20 w-40 rounded-md bg-red-200 p-3 drop-shadow-md">
+        <div className="w-50 fixed right-4 z-20 rounded-md bg-red-200 p-3 drop-shadow-md md:right-8 md:top-20 md:w-40">
           <h2 className="text-sm">Average Years of Experience:</h2>
           <p className="text-lg font-bold">
             {averageYears.toFixed(1)} years{" "}

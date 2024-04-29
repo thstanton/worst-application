@@ -22,6 +22,15 @@ export default function Page6() {
     "Try to use the word 'arousal' in your answer.",
   ];
 
+  const secondaryErrorMessages = [
+    "",
+    "You need to type more to proceed.",
+    "You need to include the word 'inspiring' to proceed.",
+    "You need to include the word 'epic' to proceed.",
+    "You need to include the word 'arousal' to proceed.",
+  ];
+  let secondaryErrorMessage = secondaryErrorMessages[0];
+
   if (answer.length <= 10) {
     errorIndex = 0;
   } else if (answer.length > 10 && answer.length <= 30) {
@@ -50,12 +59,12 @@ export default function Page6() {
 
   return (
     <>
-      {errorIndex > 0 && <StarRating errorIndex={errorIndex} />}
       <FormPageLayout progress={50}>
         <form className="max-w-screen-md" onSubmit={handleSubmit}>
           <h1 className="mb-3">
             Thank you for your cover letter. Now please answer this question.
           </h1>
+          {errorIndex > 0 && <StarRating errorIndex={errorIndex} />}
           <InputContainer>
             <InputLabel htmlFor="question">
               Why do you want to work for us?
@@ -69,6 +78,10 @@ export default function Page6() {
               onChange={(event) => setAnswer(event.target.value)}
             />
             <InputMessage customMessage={errorMessages[errorIndex]} />
+            <InputMessage
+              className="font-bold"
+              customMessage={secondaryErrorMessage}
+            />
           </InputContainer>
           <NextButton disabled={errorIndex < 7} />
         </form>
@@ -79,7 +92,7 @@ export default function Page6() {
 
 function StarRating({ errorIndex }: { errorIndex: number }) {
   return (
-    <div className="fixed right-8 top-20 w-40 rounded-md bg-slate-50 p-3 drop-shadow-md">
+    <div className="mx-auto mb-3 w-40 rounded-md bg-slate-50 p-3 drop-shadow-md md:fixed md:right-8 md:top-20">
       <h1>Answer quality:</h1>
       <div className="rating rating-half">
         <input

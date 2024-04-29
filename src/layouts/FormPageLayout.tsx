@@ -13,7 +13,7 @@ export default function FormPageLayout({
   return (
     <div className="flex min-h-[calc(100vh-5rem)] w-full flex-col items-center">
       <progress
-        className="progress progress-primary my-8 w-56"
+        className="progress progress-primary my-4 w-56 md:my-8"
         value={progress}
         max="100"
       ></progress>

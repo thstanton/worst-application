@@ -26,9 +26,9 @@ export default function FileUpload({
   };
 
   return (
-    <InputContainer>
+    <InputContainer className="w-full">
       <InputLabel htmlFor="cv">{labelText}</InputLabel>
-      <div className="flex min-w-96 items-center justify-start gap-2 rounded-xl border-[1px] border-solid border-primary bg-white">
+      <div className="flex w-full items-center justify-start gap-2 rounded-xl border-[1px] border-solid border-primary bg-white md:min-w-96">
         <button className="btn btn-primary w-24" onClick={handleButton}>
           Upload
         </button>

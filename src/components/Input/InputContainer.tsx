@@ -9,5 +9,5 @@ export default function InputContainer({
   children,
   className,
 }: InputContainerProps) {
-  return <div className={`mb-3 ${className}`}>{children}</div>;
+  return <div className={`mb-3 ${className && className}`}>{children}</div>;
 }
