@@ -5,7 +5,7 @@ const hints = [
   "You need to click the upload button to continue.",
   "You need to click 'Start Scan' to continue.",
   "You do not need to 'fix' the errors but you do need to tick the box to continue.",
-  "You need to answer for every language to continue.",
+  "You need to answer for every language to continue. Sorry.",
   "You need to click the upload button to continue.",
   "You need to start typing an answer to continue.",
   "You need to type more to continue. Sorry.",

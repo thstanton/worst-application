@@ -107,7 +107,7 @@ export default function Page3() {
             {!confirmed && <InputMessage customMessage={termsError} />}
           </InputContainer>
         )}
-        <NextButton />
+        <NextButton disabled={scanning === "false"} />
       </form>
     </FormPageLayout>
   );
