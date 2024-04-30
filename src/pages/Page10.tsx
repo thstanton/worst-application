@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import { useForm } from "../contexts/FormContext";
 import FormPageLayout from "../layouts/FormPageLayout";
+import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
+import ShareModal from "../components/ShareModal";
 
 export default function Page10() {
+  const navigate = useNavigate();
   const { name, pirateOrNinja } = useForm();
   const [loading, setLoading] = useState(true);
   let weAre: string;
@@ -15,6 +19,13 @@ export default function Page10() {
   useEffect(() => {
     setTimeout(() => setLoading(false), 5000);
   }, []);
+
+  const handleModal = () => {
+    const dialogEl = document.getElementById(
+      "share-modal",
+    ) as HTMLDialogElement;
+    dialogEl.showModal();
+  };
 
   return (
     <FormPageLayout progress={100}>
@@ -44,13 +55,22 @@ export default function Page10() {
               </p>
             </div>
           </div>
-          <div className="text-center">
-            Made by{" "}
-            <a href="https://tim-stanton.vercel.app" className="link">
-              Tim Stanton
-            </a>{" "}
-            (please hire me!)
+          <div className="my-8 flex justify-center gap-4">
+            <button
+              className="btn btn-primary btn-lg drop-shadow-lg"
+              onClick={() => navigate("/")}
+            >
+              Try Again
+            </button>
+            <button
+              className="btn btn-primary btn-lg drop-shadow-lg"
+              onClick={handleModal}
+            >
+              Share
+            </button>
           </div>
+          <Footer />
+          <ShareModal />
         </div>
       )}
     </FormPageLayout>
