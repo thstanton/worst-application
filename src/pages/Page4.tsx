@@ -4,9 +4,11 @@ import NextButton from "../components/NextButton";
 import InputContainer from "../components/Input/InputContainer";
 import InputLabel from "../components/Input/InputLabel";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "../contexts/FormContext";
 
 export default function Page4() {
   const navigate = useNavigate();
+  const { setHintIdx } = useForm();
   const [skillValues, setSkillValues] = useState<number[]>([0]);
   const [displayedSkills, setDisplayedSkills] = useState<number>(3);
   const [averageYears, setAverageYears] = useState<number>(0);
@@ -35,7 +37,10 @@ export default function Page4() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (skillValues.length >= languages.length - 1) navigate("/form5");
+    if (skillValues.length >= languages.length - 1) {
+      if (setHintIdx) setHintIdx(5);
+      navigate("/form5");
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

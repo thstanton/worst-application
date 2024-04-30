@@ -4,15 +4,19 @@ import FormPageLayout from "../layouts/FormPageLayout";
 import FileUpload, { UploadStatus } from "../components/FileUpload";
 import { useState } from "react";
 import InputMessage from "../components/Input/InputMessage";
+import { useForm } from "../contexts/FormContext";
 
 export default function Page5() {
   const navigate = useNavigate();
+  const { setHintIdx } = useForm();
   const [cvStatus, setCvStatus] = useState<UploadStatus>("false");
   const [error, setError] = useState(false);
 
   const handleSubmit = () => {
-    if (cvStatus === "true") navigate("/form6");
-    else setError(true);
+    if (cvStatus === "true") {
+      if (setHintIdx) setHintIdx(6);
+      navigate("/form6");
+    } else setError(true);
   };
 
   return (

@@ -10,7 +10,7 @@ import { useState } from "react";
 
 export default function Page1() {
   const navigate = useNavigate();
-  const { name, setName } = useForm();
+  const { name, setName, setHintIdx } = useForm();
   const [confirmed, setConfirmed] = useState(false);
   const [nameError, setNameError] = useState("");
   const [termsError, setTermsError] = useState("");
@@ -18,6 +18,7 @@ export default function Page1() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (name && confirmed) {
+      if (setHintIdx) setHintIdx(1);
       navigate("/form2");
     }
     confirmed

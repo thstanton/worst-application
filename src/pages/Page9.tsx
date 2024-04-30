@@ -4,13 +4,21 @@ import InputLabel from "../components/Input/InputLabel";
 import FormPageLayout from "../layouts/FormPageLayout";
 import { PirateNinja, useForm } from "../contexts/FormContext";
 import NextButton from "../components/NextButton";
+import InputMessage from "../components/Input/InputMessage";
+import { useState } from "react";
 
 export default function Page9() {
   const navigate = useNavigate();
   const { pirateOrNinja, setPirateOrNinja } = useForm();
+  const [error, setError] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (setPirateOrNinja) setPirateOrNinja(e.target.value as PirateNinja);
+  };
+
+  const handleSubmit = () => {
+    if (pirateOrNinja) navigate("/form10");
+    else setError(true);
   };
 
   return (
@@ -46,7 +54,10 @@ export default function Page9() {
             />
           </label>
         </div>
-        <NextButton onClick={() => navigate("/form10")} />
+        {error && (
+          <InputMessage customMessage="Get off the fence. Pirate or ninja. Make your choice!" />
+        )}
+        <NextButton onClick={handleSubmit} />
       </InputContainer>
     </FormPageLayout>
   );

@@ -6,6 +6,7 @@ import RadioButton from "../components/RadioButton";
 import NextButton from "../components/NextButton";
 import InputMessage from "../components/Input/InputMessage";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "../contexts/FormContext";
 
 const rangeValueLabels = [
   "£0",
@@ -97,6 +98,7 @@ const rangeValueLabels = [
 
 export default function Page7() {
   const navigate = useNavigate();
+  const { setHintIdx } = useForm();
   const [rangeValue, setRangeValue] = useState(0);
   const maxRange = rangeValueLabels.length - 1;
   const [remoteOptions, setRemoteOptions] = useState<string[]>([
@@ -121,6 +123,7 @@ export default function Page7() {
     if (rangeValue === maxRange) {
       setSalaryError(true);
     } else {
+      if (setHintIdx) setHintIdx(12);
       navigate("/form8");
     }
   };

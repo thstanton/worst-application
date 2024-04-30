@@ -6,6 +6,7 @@ import FormPageLayout from "../layouts/FormPageLayout";
 import NextButton from "../components/NextButton";
 import { useNavigate } from "react-router-dom";
 import InputMessage from "../components/Input/InputMessage";
+import { useForm } from "../contexts/FormContext";
 
 interface Job {
   id: number;
@@ -33,6 +34,7 @@ type JobFormStatus = "loaded" | "error";
 
 export default function Page3() {
   const navigate = useNavigate();
+  const { setHintIdx } = useForm();
   const [maxJobCount, setMaxJobCount] = useState(0);
   const [scanning, setScanning] = useState<ScanningStatus>("false");
   const [confirmed, setConfirmed] = useState(false);
@@ -42,6 +44,7 @@ export default function Page3() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (confirmed && jobsError === "error") {
+      if (setHintIdx) setHintIdx(4);
       navigate("/form4");
     }
     if (jobsError === "loaded" && scanning === "complete") {
@@ -59,6 +62,8 @@ export default function Page3() {
     else if (scanning === "true" && maxJobCount >= jobs.length)
       setScanning("complete");
   }, [scanning, setScanning, maxJobCount]);
+
+  if (scanning === "complete" && setHintIdx) setHintIdx(3);
 
   return (
     <FormPageLayout progress={28}>
@@ -237,7 +242,7 @@ const jobs: Job[] = [
     descriptionError: "🤨 These are just the lyrics to Bohemian Rhapsody.",
     randomQuestion: "What was your least favourite part of the job?",
     randomAnswer: "",
-    randomAnswerError: "What really got your goat?",
+    randomAnswerError: "We won't interpret it as weakness, honest!",
   },
   {
     id: 4,

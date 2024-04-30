@@ -7,7 +7,8 @@ interface FormProviderProps {
 
 export const FormProvider = ({ children }: FormProviderProps) => {
   const [name, setName] = useState<string>("");
-  const [pirateOrNinja, setPirateOrNinja] = useState<PirateNinja>("pirate");
+  const [pirateOrNinja, setPirateOrNinja] = useState<PirateNinja>();
+  const [hintIdx, setHintIdx] = useState(0);
 
   return (
     <FormContext.Provider
@@ -16,6 +17,8 @@ export const FormProvider = ({ children }: FormProviderProps) => {
         setName,
         pirateOrNinja,
         setPirateOrNinja,
+        hintIdx,
+        setHintIdx,
       }}
     >
       {children}

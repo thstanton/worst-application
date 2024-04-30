@@ -5,9 +5,11 @@ import NextButton from "../components/NextButton";
 import FormPageLayout from "../layouts/FormPageLayout";
 import { useState } from "react";
 import InputMessage from "../components/Input/InputMessage";
+import { useForm } from "../contexts/FormContext";
 
 export default function Page6() {
   const navigate = useNavigate();
+  const { setHintIdx } = useForm();
   const [answer, setAnswer] = useState<string>("");
 
   const targetWords = [/inspiring/i, /epic/i, /arousal/i];
@@ -22,28 +24,23 @@ export default function Page6() {
     "Try to use the word 'arousal' in your answer.",
   ];
 
-  const secondaryErrorMessages = [
-    "",
-    "You need to type more to proceed.",
-    "You need to include the word 'inspiring' to proceed.",
-    "You need to include the word 'epic' to proceed.",
-    "You need to include the word 'arousal' to proceed.",
-  ];
-  let secondaryErrorMessage = secondaryErrorMessages[0];
-
   if (answer.length <= 10) {
     errorIndex = 0;
   } else if (answer.length > 10 && answer.length <= 30) {
     errorIndex = 1;
+    if (setHintIdx) setHintIdx(7);
   } else if (answer.length > 30 && answer.length <= 90) {
     errorIndex = 2;
   } else if (answer.length > 90 && answer.length <= 150) {
     errorIndex = 3;
   } else if (!targetWords[0].test(answer)) {
+    if (setHintIdx) setHintIdx(8);
     errorIndex = 4;
   } else if (!targetWords[1].test(answer)) {
+    if (setHintIdx) setHintIdx(9);
     errorIndex = 5;
   } else if (!targetWords[2].test(answer)) {
+    if (setHintIdx) setHintIdx(10);
     errorIndex = 6;
   } else {
     errorIndex = 7;
@@ -54,6 +51,7 @@ export default function Page6() {
     if (errorIndex < 7) {
       return;
     }
+    if (setHintIdx) setHintIdx(11);
     navigate("/form7");
   };
 
@@ -78,10 +76,6 @@ export default function Page6() {
               onChange={(event) => setAnswer(event.target.value)}
             />
             <InputMessage customMessage={errorMessages[errorIndex]} />
-            <InputMessage
-              className="font-bold"
-              customMessage={secondaryErrorMessage}
-            />
           </InputContainer>
           <NextButton disabled={errorIndex < 7} />
         </form>

@@ -3,12 +3,15 @@ import NextButton from "../components/NextButton";
 import FormPageLayout from "../layouts/FormPageLayout";
 import { useState } from "react";
 import FileUpload, { UploadStatus } from "../components/FileUpload";
+import { useForm } from "../contexts/FormContext";
 
 export default function Page2() {
   const navigate = useNavigate();
   const [cvStatus, setCvStatus] = useState<UploadStatus>("false");
+  const { setHintIdx } = useForm();
 
   const handleSubmit = () => {
+    if (setHintIdx) setHintIdx(2);
     navigate("/form3");
   };
 
